@@ -1,12 +1,13 @@
 
 # ouedkniss like
-ouedkniss like is a django project that allow users to create announces and search among them 
+ouedkniss like is a django project that allow users to post announces and search among them with some auther features
 
 
 ## features
 - full authentication system (session based) 
 - announces crud operations
-- comment system with JQuery 
+- comment system (all crud operation ) with JQuery 
+
 
 ## INSTALLED APPS 
 

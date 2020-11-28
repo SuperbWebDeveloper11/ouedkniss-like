@@ -4,6 +4,7 @@ ouedkniss like is a django project that allow users to create announces and sear
 
 
 ## features
+- full authentication system (session based) 
 - announces crud operations
 - comment system with JQuery 
 

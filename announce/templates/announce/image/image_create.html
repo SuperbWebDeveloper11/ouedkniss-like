@@ -1,0 +1,13 @@
+{% load crispy_forms_tags %}
+
+<!-- The view should pass 'form' and 'announce_pk'  -->
+<form method="post" action="{% url 'announce:image_create' pk=announce_pk %}" enctype="multipart/form-data" id="submit-temp" class='uniForm' novalidate >
+  {% csrf_token %}
+  <hr />
+  <h4>Create image</h4>
+    {{ form|crispy }}
+  <div>
+    <button type="submit" class="btn btn-primary">Add image</button>
+  </div>
+</form>
+

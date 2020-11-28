@@ -1,0 +1,21 @@
+{% load static %}
+
+{% for image in image_list %}
+
+<p>{{ image.title }}</p>
+<img src="{% if image.image %}{{ image.image.url }} 
+{% else %}{% static "announce/img/no_image.png" %} {% endif %}"
+     class="img-fluid rounded" alt="image not found" />
+
+  <!-- Display 'Edit' and 'Delete' buttons -->
+  {% if user.is_authenticated and image.announce.owner == user %}
+  <button class='btn btn-primary' id='fetch-temp'
+    data-url="{% url 'announce:image_update' pk=image.announce.pk image_pk=image.pk %}"> Edit </button>
+  <button class='btn btn-danger' id='fetch-temp'
+    data-url="{% url 'announce:image_delete' pk=image.announce.pk image_pk=image.pk %}"> Delete </button>
+  {% endif %}
+
+
+{% empty %}
+<p>No descriptive images Yet</p>
+{% endfor %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Display announce.title and announce.owner.username -->
+<h2>{{ announce.title }} By {{ announce.owner.username }} </h2>
+
+
+<!-- Display 'Edit' and 'Delete' buttons -->
+{% if user.is_authenticated and announce.owner == request.user %}
+<p>
+<a href="{% url 'announce:announce_update' announce.pk %}" class="btn btn-primary"> Update </a> 
+<a href="{% url 'announce:announce_delete' announce.pk %}" class="btn btn-danger"> Delete </a>
+</p>
+<hr />
+{% endif %}
+
+<hr />
+
+{% if user.is_authenticated and user == announce.owner %}
+<div class='create-image'>
+  {% include "announce/image/image_create.html" with form=image_form announce_pk=announce.pk %}
+</div>
+{% endif %}
+
+<!-- we will display list_template here -->
+<div id='image-list-wrapper'>
+  {% include "announce/image/image_list.html" with image_list=announce.images.all %}
+</div>
+
+
+
+<hr />
+
+<!-- modal for creating, updating and deleting comments -->
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class='create-comment'>
+  {% include "announce/comment/comment_create.html" with form=comment_form announce_pk=announce.pk %}
+</div>
+{% endif %}
+
+
+<div id='list-wrapper'>
+  <h3>Comments</h3>
+  {% include "announce/comment/comment_list.html" with comment_list=announce.comments.all %}
+</div>
+
+
+
+{% endblock %}
